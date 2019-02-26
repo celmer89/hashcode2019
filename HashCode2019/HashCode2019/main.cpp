@@ -7,8 +7,21 @@
 
 using namespace std;
 
+struct Piece
+{
+    Piece() : eaten(false) {}
+    bool eaten;
+    char type;
+};
+
+struct Slice
+{
+    int x1, x2;
+    int y1, y2;
+};
+
 int R, C, L, H;
-vector<vector<char>> Pizza;
+vector<vector<Piece> > Pizza;
 
 void ReadData(string file) {
 
@@ -24,7 +37,7 @@ void ReadData(string file) {
 
     for (int i = 0; i < R; ++i) {
         for (int j = 0; j < C; ++j) {
-            filestream >> Pizza[i][j];
+            filestream >> Pizza[i][j].type;
         }
 
     }
