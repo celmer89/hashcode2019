@@ -2,16 +2,20 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <string>
+#include <fstream> 
 
 using namespace std;
 
 int R, C, L, H;
-vector<vector<char> > Pizza;
+vector<vector<char>> Pizza;
 
+void ReadData(string file) {
 
-void ReadData() {
+    fstream filestream;
+    filestream.open(file, std::fstream::in);
 
-    cin >> R >> C >> L >> H;
+    filestream >> R >> C >> L >> H;
 
     Pizza.resize(R);
     for (int i = 0; i < R; ++i) {
@@ -20,23 +24,27 @@ void ReadData() {
 
     for (int i = 0; i < R; ++i) {
         for (int j = 0; j < C; ++j) {
-            cin >> Pizza[i][j];
+            filestream >> Pizza[i][j];
         }
 
     }
+
+    filestream.close();
 }
 
 
 void Solve()
 {
 
+
     // TO DO
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
-    ReadData();
+    string file(argv[1]);
+    ReadData(file);
     Solve();
 
     return 0;
