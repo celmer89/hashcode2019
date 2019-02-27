@@ -14,6 +14,10 @@ struct Piece
     char type;
 };
 
+struct Output{
+    int param;
+};
+
 class DataReader
 {
     public:

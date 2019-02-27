@@ -1,4 +1,5 @@
 #pragma once
+#include "reader.h"
 
 class ISolver
 {
@@ -6,5 +7,5 @@ class ISolver
     virtual ~ISolver() {};
 
     virtual void Solve() = 0;
-    virtual void GetResult() = 0;
+    virtual  std::vector<Output> GetResult() = 0;
 };
