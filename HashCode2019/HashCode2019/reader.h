@@ -89,8 +89,8 @@ struct Output {
 struct Slide
 {
     bool vertical = false;
-    int pic_ind1;
-    int pic_ind2;
+    int pic_ind1 = -1;
+    int pic_ind2 = -1;
     TagsSet tags;
 
 };
