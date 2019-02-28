@@ -6,6 +6,7 @@
 #include <string>
 #include "reader.h"
 #include "solver.h"
+#include "basicoptimizer.h"
 
 using namespace std;
 
