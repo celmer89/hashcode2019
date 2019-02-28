@@ -64,6 +64,7 @@ public:
 
 struct Photo
 {
+    int idx = 0;
     TagsSet tags;
     bool vertical = false;
     bool used = false;
@@ -88,8 +89,8 @@ class DataReader
 public:
     explicit DataReader(std::string file_name) : m_FileName(file_name) {}
     void Read(Params& params);
-    int GetScore(const Slide& slide1, const Slide& slide2);
-    int GetScore(const TagsSet& set1, const TagsSet& set2);
+    static int GetScore(const Slide& slide1, const Slide& slide2);
+    static int GetScore(const TagsSet& set1, const TagsSet& set2);
 
 public:
     std::string m_FileName;

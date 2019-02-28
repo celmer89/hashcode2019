@@ -12,7 +12,7 @@ class Solver : public ISolver
             return m_Solution;
         }
 
-    private:
+    protected:
         Params m_Params;
         std::vector<std::vector<Piece> > m_Pizza;
 

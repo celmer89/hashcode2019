@@ -19,6 +19,7 @@ void DataReader::Read(Params& params)
         int tags_num;
         filestream >> orientation >> tags_num;
 
+        m_Photos[i].idx = i;
         m_Photos[i].vertical = (orientation == 'V');
 
         for (int t = 0; t < tags_num; ++t)

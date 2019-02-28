@@ -8,6 +8,8 @@
 #include "solver.h"
 #include "basicoptimizer.h"
 
+#include "TheBestSolver.h"
+
 using namespace std;
 
 
@@ -22,11 +24,13 @@ int main(int argc, char *argv[])
     DataReader data_reader(file);
     data_reader.Read(params);
 
-    ISolver* solver = new Solver(params, data_reader);
+    ISolver* solver = new TheBestSolver(params, data_reader);
     solver->Solve();
     auto result = solver->GetResult();
 
     fstream out(file_out, std::fstream::out);
+    out << result.size() << std::endl;
+
     for (auto elem : result) {
         out << elem.pic_ind1;
         if (elem.vertical)
