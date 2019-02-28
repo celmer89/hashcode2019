@@ -1,6 +1,7 @@
 #include "basicoptimizer.h"
 #include "reader.h"
 #include <ctime>
+#include <iostream>
 
 using namespace std;
 
@@ -30,7 +31,7 @@ int BasicOptimizer::CalculateTrioScore(const std::vector<Photo>& photos, const s
     return score;
 }
 
-void BasicOptimizer::TrySwap(const std::vector<Photo>& photos, std::vector<Output>& result, size_t first_index, size_t second_index)
+void BasicOptimizer::TrySwap(const std::vector<Photo>& photos, std::vector<Output>& result, size_t first_index, size_t second_index, bool& succ)
 {
     // for now try to change only first image
     int current_score = CalculateTrioScore(photos, result, first_index) + CalculateTrioScore(photos, result, second_index);
@@ -47,6 +48,7 @@ void BasicOptimizer::TrySwap(const std::vector<Photo>& photos, std::vector<Outpu
     if (new_score > current_score)
     {
         // accept swap
+        succ = true;
     }
     else
     {
@@ -59,11 +61,19 @@ void BasicOptimizer::Optimize(std::vector<Output>& result)
 {
     std::vector<Photo> photos = m_DataReaderPtr->m_Photos;
 
+    bool succ = false;
+    int succ_size = 0;
     for (size_t i = 0; i < m_OptimizerParams.iterations; ++i)
     {
+        succ = false;
         size_t first_index = GetRandomInt(0, result.size() - 1);
-        size_t second_index = GetRandomInt(first_index + 1, result.size());
+        size_t second_index = first_index + 1;
+        //size_t second_index = GetRandomInt(first_index + 1, result.size());
 
-        TrySwap(photos, result, first_index, second_index);
+        TrySwap(photos, result, first_index, second_index, succ);
+
+        if (succ)
+            succ_size++;
     }
+    std::cout << "Result: " << succ_size << std::endl;
 }

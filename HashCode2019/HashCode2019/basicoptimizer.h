@@ -13,5 +13,5 @@ private:
     DataReader* m_DataReaderPtr;
 
     int CalculateTrioScore(const std::vector<Photo>& photos, const std::vector<Output>& result, size_t index);
-    void TrySwap(const std::vector<Photo>& photos, std::vector<Output>& result, size_t first_index, size_t second_index);
+    void TrySwap(const std::vector<Photo>& photos, std::vector<Output>& result, size_t first_index, size_t second_index, bool& succ);
 };
