@@ -34,12 +34,22 @@ void DataReader::Read(Params& params)
     filestream.close();
 }
 
-int DataReader::GetScore(Slide slide1, Slide slide2)
+int DataReader::GetScore(const Slide& slide1, const Slide& slide2)
 {
     int intersection = slide1.tags.intersection(slide2.tags).size();
     int cond1 = intersection;
     int cond2 = slide1.tags.size() - intersection;
     int cond3 = slide2.tags.size() - intersection;
+
+    return std::min(cond1, std::min(cond2, cond3));
+}
+
+int DataReader::GetScore(const TagsSet & set1, const TagsSet & set2)
+{
+    int intersection = set1.intersection(set2).size();
+    int cond1 = intersection;
+    int cond2 = set1.size() - intersection;
+    int cond3 = set2.size() - intersection;
 
     return std::min(cond1, std::min(cond2, cond3));
 }

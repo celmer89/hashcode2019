@@ -33,7 +33,7 @@ public:
         std::sort(tags, tags + tags_num);
     }
 
-    uint8_t size()
+    uint8_t size() const
     { 
         return tags_num;
     }
@@ -88,7 +88,8 @@ class DataReader
 public:
     explicit DataReader(std::string file_name) : m_FileName(file_name) {}
     void Read(Params& params);
-    int GetScore(Slide slide1, Slide slide2);
+    int GetScore(const Slide& slide1, const Slide& slide2);
+    int GetScore(const TagsSet& set1, const TagsSet& set2);
 
 public:
     std::string m_FileName;
