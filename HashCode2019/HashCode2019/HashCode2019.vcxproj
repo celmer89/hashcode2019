@@ -115,12 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="basicoptimizer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="solver.cpp" />
     <ClCompile Include="TheBestSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basicoptimizer.h" />
+    <ClInclude Include="ioptimizer.h" />
     <ClInclude Include="isolver.h" />
     <ClInclude Include="reader.h" />
     <ClInclude Include="solver.h" />
