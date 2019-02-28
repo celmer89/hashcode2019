@@ -68,6 +68,10 @@ struct Photo
     bool vertical = false;
 };
 
+struct Output{
+    int param;
+};
+
 uint64_t StringToUint64(std::string&& str);
 
 class DataReader

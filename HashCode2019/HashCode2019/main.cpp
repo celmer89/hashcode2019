@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+#include <fstream>
 #include <vector>
 #include <algorithm>
 #include <string>
@@ -8,9 +9,13 @@
 
 using namespace std;
 
+
+
+
 int main(int argc, char *argv[])
 {
     string file(argv[1]);
+    string file_out(argv[2]);
     Params params; // R, C, L, H
 
     DataReader data_reader(file);
@@ -18,7 +23,14 @@ int main(int argc, char *argv[])
 
     ISolver* solver = new Solver(params, data_reader);
     solver->Solve();
-    solver->GetResult();
+    auto result = solver->GetResult();
+
+    fstream out(file_out, std::fstream::out);
+    for (auto elem : result) {
+        out << elem.param << " ";
+    }
+    out.close();
+
     delete solver;
 
     return 0;
