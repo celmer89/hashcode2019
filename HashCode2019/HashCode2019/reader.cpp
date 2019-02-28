@@ -24,8 +24,8 @@ void DataReader::Read(Params& params)
             filestream >> tag;
 
             m_Photos[i].tags.add(StringToUint64(std::move(tag)));
-            m_Photos[i].tags.sort();
         }
+        m_Photos[i].tags.sort();
     }
 
     filestream.close();
