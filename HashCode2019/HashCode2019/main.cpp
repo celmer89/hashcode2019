@@ -27,7 +27,10 @@ int main(int argc, char *argv[])
 
     fstream out(file_out, std::fstream::out);
     for (auto elem : result) {
-        out << elem.param << " ";
+        out << elem.pic_ind1;
+        if (elem.vertical)
+            out << " " << elem.pic_ind2;
+        out << std::endl;
     }
     out.close();
 

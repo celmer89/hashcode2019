@@ -69,7 +69,9 @@ struct Photo
 };
 
 struct Output{
-    int param;
+    bool vertical;
+    int pic_ind1;
+    int pic_ind2;
 };
 
 uint64_t StringToUint64(std::string&& str);
