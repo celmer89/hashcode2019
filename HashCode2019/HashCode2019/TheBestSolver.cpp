@@ -12,11 +12,20 @@ void TheBestSolver::Solve()
     std::sort(photos.begin(), photos.end(), [](const Photo& lhs, const Photo& rhs) { return lhs.tags.size() > rhs.tags.size(); });
 
     int used_photos = 0;
-    int total_score = 0;
+    int64_t total_score = 0;
+
+    int percent = -1;
 
     int i = 0;
     while (used_photos < photos.size())
     {
+        int new_percent = (used_photos * 100 / photos.size());
+        if (new_percent > percent)
+        {
+            fprintf(stderr, "%d%%\n", new_percent);
+            percent = new_percent;
+        }
+
         int max_score = -1;
         int max_j = -1;
 
@@ -58,5 +67,7 @@ void TheBestSolver::Solve()
             break;
         }
     }
+
+    fprintf(stderr, "Total score: %lld\n", total_score);
 
 }
