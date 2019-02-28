@@ -66,6 +66,7 @@ struct Photo
 {
     TagsSet tags;
     bool vertical = false;
+    bool used = false;
 };
 
 struct Output{
