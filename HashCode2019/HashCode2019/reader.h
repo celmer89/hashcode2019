@@ -56,6 +56,15 @@ public:
         return result;
     }
 
+    TagsSet get_union(const TagsSet& rhs) const
+    {
+        TagsSet result;
+        auto end = std::set_union(tags, tags + tags_num, rhs.tags, rhs.tags + rhs.tags_num, result.tags);
+        assert(end - result.tags < MAX_TAGS);
+        result.tags_num = uint8_t(end - result.tags);
+        return result;
+    }
+
 public:
     static const int MAX_TAGS = 200;
     uint64_t tags[MAX_TAGS] = { 0 };
