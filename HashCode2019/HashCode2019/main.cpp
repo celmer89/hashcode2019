@@ -7,7 +7,7 @@
 #include "reader.h"
 #include "solver.h"
 #include "basicoptimizer.h"
-
+#include "solverVertical.h"
 #include "TheBestSolver.h"
 
 using namespace std;
@@ -24,7 +24,7 @@ int main(int argc, char *argv[])
     DataReader data_reader(file);
     data_reader.Read(params);
 
-    ISolver* solver = new TheBestSolver(params, data_reader);
+    ISolver* solver = new SolverVertical(params, data_reader);
     solver->Solve();
     auto result = solver->GetResult();
 

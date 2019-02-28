@@ -119,6 +119,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="reader.cpp" />
     <ClCompile Include="solver.cpp" />
+    <ClCompile Include="solverVertical.cpp" />
     <ClCompile Include="TheBestSolver.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,7 @@
     <ClInclude Include="isolver.h" />
     <ClInclude Include="reader.h" />
     <ClInclude Include="solver.h" />
+    <ClInclude Include="solverVertical.h" />
     <ClInclude Include="TheBestSolver.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

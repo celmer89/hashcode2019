@@ -1,6 +1,7 @@
 #pragma once
 #include "isolver.h"
 #include "reader.h"
+#include <vector>
 
 class SolverVertical : public ISolver
 {
@@ -8,6 +9,12 @@ class SolverVertical : public ISolver
         SolverVertical(Params params, const DataReader& reader);
         virtual ~SolverVertical() {};
         virtual void Solve() ;
+        void  Sort();
+
+        std::vector<Slide> GetSolution1();
+        std::vector<Slide> GetSolution2();
+        std::vector<Slide> GetSolution3();
+
         virtual std::vector<Output> GetResult() {
             return m_Solution;
         }

@@ -79,16 +79,20 @@ struct Photo
     bool used = false;
 };
 
-struct Output{
-    bool vertical;
+struct Output {
+    bool vertical = false;
     int pic_ind1;
     int pic_ind2;
+    TagsSet tags;
 };
 
 struct Slide
 {
     bool vertical = false;
+    int pic_ind1;
+    int pic_ind2;
     TagsSet tags;
+
 };
 
 uint64_t StringToUint64(std::string&& str);
