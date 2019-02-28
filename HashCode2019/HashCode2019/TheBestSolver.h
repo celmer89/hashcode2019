@@ -20,6 +20,6 @@ public:
     }
 
 public:
-    std::vector<Photo> photos;
+    std::vector<Slide> slides;
 };
 

@@ -10,7 +10,7 @@ class SolverVertical : public ISolver
         virtual ~SolverVertical() {};
         virtual void Solve() ;
         void  Sort();
-        void SortOutData(std::vector<Photo>& in, std::vector<Photo>& outHor, std::vector<Photo> &outVer);
+        void SortOutData(const std::vector<Photo>& in, std::vector<Photo>& outHor, std::vector<Photo> &outVer);
 
         std::vector<Slide> GetSolution1(std::vector<Photo>& photos);
         std::vector<Slide> GetSolution2(std::vector<Photo>& photos);

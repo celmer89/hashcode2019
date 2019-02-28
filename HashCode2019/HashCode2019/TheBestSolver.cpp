@@ -1,25 +1,51 @@
 #include "TheBestSolver.h"
-
+#include "solverVertical.h"
 
 TheBestSolver::TheBestSolver(Params params, const DataReader& reader)
     : Solver(params, reader)
 {
-    photos = reader.m_Photos;
+    SolverVertical solver(params, reader);
+
+    std::vector<Photo> horz;
+    std::vector<Photo> vert;
+    solver.SortOutData(reader.m_Photos, horz, vert);
+
+    slides = solver.GetSolution2(vert);
+
+    for (const auto& photo : horz)
+    {
+        Slide s;
+        s.vertical = false;
+        s.pic_ind1 = photo.idx;
+        s.tags = photo.tags;
+        slides.push_back(s);
+    }
+
+    //photos = reader.m_Photos;
 }
 
 void TheBestSolver::Solve()
 {
-    std::sort(photos.begin(), photos.end(), [](const Photo& lhs, const Photo& rhs) { return lhs.tags.size() > rhs.tags.size(); });
+    std::sort(slides.begin(), slides.end(), [](const Slide& lhs, const Slide& rhs) { return lhs.tags.size() > rhs.tags.size(); });
 
     int used_photos = 0;
     int64_t total_score = 0;
 
+    std::vector<bool> used;
+    used.resize(slides.size(), false);
+
     int percent = -1;
 
     int i = 0;
-    while (used_photos < photos.size())
+
+    Output out;
+    out.vertical = slides[i].vertical;
+    out.pic_ind1 = slides[i].pic_ind1;
+    out.pic_ind2 = slides[i].pic_ind2;
+
+    while (used_photos < slides.size())
     {
-        int new_percent = (used_photos * 100 / photos.size());
+        int new_percent = (used_photos * 100 / slides.size());
         if (new_percent > percent)
         {
             fprintf(stderr, "%d%%\n", new_percent);
@@ -29,15 +55,15 @@ void TheBestSolver::Solve()
         int max_score = -1;
         int max_j = -1;
 
-        for (int j = 0; j < photos.size(); ++j)
+        for (int j = 0; j < slides.size(); ++j)
         {
-            if (i == j || photos[j].used)
+            if (i == j || used[j])
                 continue;
 
-            int score_est = std::min(photos[i].tags.size(), photos[j].tags.size()) / 2;
+            int score_est = std::min(slides[i].tags.size(), slides[j].tags.size()) / 2;
             if (score_est > max_score)
             {
-                int score = DataReader::GetScore(photos[i].tags, photos[j].tags);
+                int score = DataReader::GetScore(slides[i].tags, slides[j].tags);
                 if (score > max_score)
                 {
                     max_j = j;
@@ -48,15 +74,15 @@ void TheBestSolver::Solve()
 
         if (max_j != -1)
         {
-            photos[i].used = true;
+            used[i] = true;
             i = max_j;
 
             total_score += max_score;
 
             Output out;
-            out.vertical = false;
-            out.pic_ind1 = photos[i].idx;
-            out.pic_ind2 = photos[max_j].idx;
+            out.vertical = slides[i].vertical;
+            out.pic_ind1 = slides[i].pic_ind1;
+            out.pic_ind2 = slides[i].pic_ind2;
 
             m_Solution.emplace_back(out);
 

@@ -89,8 +89,8 @@ struct Output {
 struct Slide
 {
     bool vertical = false;
-    int pic_ind1;
-    int pic_ind2;
+    int pic_ind1 = -1;
+    int pic_ind2 = -1;
     TagsSet tags;
 
 };
@@ -104,6 +104,8 @@ public:
     void Read(Params& params);
     static int GetScore(const Slide& slide1, const Slide& slide2);
     static int GetScore(const TagsSet& set1, const TagsSet& set2);
+
+    static int GetOverallScore(std::vector<Slide>& solution);
 
 public:
     std::string m_FileName;

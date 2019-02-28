@@ -31,7 +31,7 @@ void SolverVertical::Solve() {
 
 }
 
-void SolverVertical::SortOutData(std::vector<Photo>& in, std::vector<Photo>& outHor, std::vector<Photo> &outVer)
+void SolverVertical::SortOutData(const std::vector<Photo>& in, std::vector<Photo>& outHor, std::vector<Photo> &outVer)
 {
     outVer.reserve(in.size() / 2);
     outVer.reserve(in.size() / 2);
@@ -59,7 +59,7 @@ vector<Slide> SolverVertical::GetSolution1(std::vector<Photo>& photos)
 
         Slide s;
         s.pic_ind1 = photos[i].idx;
-        s.pic_ind2 = photos[m_Photos.size() - i-1].idx;
+        s.pic_ind2 = photos[photos.size() - i-1].idx;
         s.tags = photos[i].tags.get_union(photos[photos.size() - i-1].tags);
         s.vertical = true;
 
@@ -75,7 +75,7 @@ vector<Slide> SolverVertical::GetSolution2(std::vector<Photo>& photos)
     vector<Slide> out;
 
     out.reserve(photos.size() / 2);
-    for (int i = 0; i < m_Photos.size(); i = i +2) {
+    for (int i = 0; i < photos.size(); i = i +2) {
 
         Slide s;
         s.pic_ind1 = photos[i].idx;
