@@ -19,26 +19,48 @@ void  SolverVertical::Sort() {
 }
 
 void SolverVertical::Solve() {
+    std::vector<Photo> horizontals;
+    std::vector<Photo> verticals;
 
-    
-    GetSolution1();
-    GetSolution2();
-    GetSolution3();
+    SortOutData(m_Photos, horizontals, verticals);
+
+    GetSolution1(verticals);
+    GetSolution2(verticals);
+    GetSolution3(verticals);
+
+
+}
+
+void SolverVertical::SortOutData(std::vector<Photo>& in, std::vector<Photo>& outHor, std::vector<Photo> &outVer)
+{
+    outVer.reserve(in.size() / 2);
+    outVer.reserve(in.size() / 2);
+
+
+    for (int i = 0; i < in.size(); ++i) {
+
+        if (in[i].vertical) {
+            outVer.push_back(in[i]);
+        }
+        else {
+            outHor.push_back(in[i]);
+        }
+    }
 }
 
 
-vector<Slide> SolverVertical::GetSolution1()
+vector<Slide> SolverVertical::GetSolution1(std::vector<Photo>& photos)
 {
     Sort();
     vector<Slide> out;
 
-    out.reserve(m_Photos.size() / 2);
-    for (int i = 0; i < m_Photos.size() / 2; ++i) {
+    out.reserve(photos.size() / 2);
+    for (int i = 0; i < photos.size() / 2; ++i) {
 
         Slide s;
-        s.pic_ind1 = m_Photos[i].idx;
-        s.pic_ind2 = m_Photos[m_Photos.size() - i-1].idx;
-        s.tags = m_Photos[i].tags.get_union(m_Photos[m_Photos.size() - i-1].tags);
+        s.pic_ind1 = photos[i].idx;
+        s.pic_ind2 = photos[m_Photos.size() - i-1].idx;
+        s.tags = photos[i].tags.get_union(photos[photos.size() - i-1].tags);
         s.vertical = true;
 
         out.push_back(s);
@@ -47,18 +69,18 @@ vector<Slide> SolverVertical::GetSolution1()
 }
 
 
-vector<Slide> SolverVertical::GetSolution2()
+vector<Slide> SolverVertical::GetSolution2(std::vector<Photo>& photos)
 {
     Sort();
     vector<Slide> out;
 
-    out.reserve(m_Photos.size() / 2);
+    out.reserve(photos.size() / 2);
     for (int i = 0; i < m_Photos.size(); i = i +2) {
 
         Slide s;
-        s.pic_ind1 = m_Photos[i].idx;
-        s.pic_ind2 = m_Photos[i+1].idx;
-        s.tags = m_Photos[i].tags.get_union(m_Photos[i+1].tags);
+        s.pic_ind1 = photos[i].idx;
+        s.pic_ind2 = photos[i+1].idx;
+        s.tags = photos[i].tags.get_union(photos[i+1].tags);
         s.vertical = true;
 
         out.push_back(s);
@@ -66,17 +88,17 @@ vector<Slide> SolverVertical::GetSolution2()
     return out;
 }
 
-vector<Slide> SolverVertical::GetSolution3()
+vector<Slide> SolverVertical::GetSolution3(std::vector<Photo>& photos)
 {
     vector<Slide> out;
 
-    out.reserve(m_Photos.size() / 2);
-    for (int i = 0; i < m_Photos.size(); i = i + 2) {
+    out.reserve(photos.size() / 2);
+    for (int i = 0; i < photos.size(); i = i + 2) {
 
         Slide s;
-        s.pic_ind1 = m_Photos[i].idx;
-        s.pic_ind2 = m_Photos[i + 1].idx;
-        s.tags = m_Photos[i].tags.get_union(m_Photos[i + 1].tags);
+        s.pic_ind1 = photos[i].idx;
+        s.pic_ind2 = photos[i + 1].idx;
+        s.tags = photos[i].tags.get_union(photos[i + 1].tags);
         s.vertical = true;
 
         out.push_back(s);
