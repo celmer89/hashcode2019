@@ -1,5 +1,8 @@
 #include "reader.h"
 #include <fstream>
+#include <algorithm>
+
+using namespace std;
 
 void DataReader::Read(Params& params)
 {
@@ -29,6 +32,16 @@ void DataReader::Read(Params& params)
     }
 
     filestream.close();
+}
+
+int DataReader::GetScore(Slide slide1, Slide slide2)
+{
+    int intersection = slide1.tags.intersection(slide2.tags).size();
+    int cond1 = intersection;
+    int cond2 = slide1.tags.size() - intersection;
+    int cond3 = slide2.tags.size() - intersection;
+
+    return std::min(cond1, std::min(cond2, cond3));
 }
 
 uint64_t StringToUint64(std::string&& str)

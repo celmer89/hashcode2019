@@ -57,7 +57,7 @@ public:
     }
 
 public:
-    static const int MAX_TAGS = 20;
+    static const int MAX_TAGS = 200;
     uint64_t tags[MAX_TAGS] = { 0 };
     uint8_t tags_num = 0;
 };
@@ -74,6 +74,12 @@ struct Output{
     int pic_ind2;
 };
 
+struct Slide
+{
+    bool vertical = false;
+    TagsSet tags;
+};
+
 uint64_t StringToUint64(std::string&& str);
 
 class DataReader
@@ -81,6 +87,7 @@ class DataReader
 public:
     explicit DataReader(std::string file_name) : m_FileName(file_name) {}
     void Read(Params& params);
+    int GetScore(Slide slide1, Slide slide2);
 
 public:
     std::string m_FileName;
