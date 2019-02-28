@@ -5,7 +5,21 @@ TheBestSolver::TheBestSolver(Params params, const DataReader& reader)
     : Solver(params, reader)
 {
     SolverVertical solver(params, reader);
-    slides = solver.GetSolution1();
+
+    std::vector<Photo> horz;
+    std::vector<Photo> vert;
+    solver.SortOutData(reader.m_Photos, horz, vert);
+
+    slides = solver.GetSolution2(vert);
+
+    for (const auto& photo : horz)
+    {
+        Slide s;
+        s.vertical = false;
+        s.pic_ind1 = photo.idx;
+        s.tags = photo.tags;
+        slides.push_back(s);
+    }
 
     //photos = reader.m_Photos;
 }
