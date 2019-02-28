@@ -55,6 +55,16 @@ int DataReader::GetScore(const TagsSet & set1, const TagsSet & set2)
     return std::min(cond1, std::min(cond2, cond3));
 }
 
+int DataReader::GetOverallScore(vector<Slide>& solution)
+{
+    int score = 0;
+    for (int i = 0; i < solution.size()-1; ++i) {
+
+        score += GetScore(solution[i], solution[i + 1]);
+    }
+    return score;
+}
+
 uint64_t StringToUint64(std::string&& str)
 {
     uint64_t val = 0;

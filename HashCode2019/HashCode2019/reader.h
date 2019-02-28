@@ -105,6 +105,8 @@ public:
     static int GetScore(const Slide& slide1, const Slide& slide2);
     static int GetScore(const TagsSet& set1, const TagsSet& set2);
 
+    static int GetOverallScore(std::vector<Slide>& solution);
+
 public:
     std::string m_FileName;
     std::vector<Photo> m_Photos;
