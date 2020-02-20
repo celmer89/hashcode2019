@@ -30,6 +30,33 @@ struct Library
 
 vector<Library> LIBRARIES;
 
+
+struct OutLibrary
+{
+	int id = 0;
+	vector<unsigned long long> books;
+};
+
+vector<OutLibrary> OUT_LIBRARIES;
+
+
+void WriteOutput()
+{
+	cout << OUT_LIBRARIES.size() << endl;
+
+	for (unsigned long long i = 0; i < B; ++i)
+	{
+		cout << OUT_LIBRARIES[i].id << " ";
+		cout << OUT_LIBRARIES[i].books.size() << endl;
+
+		for (unsigned long long j = 0; j < OUT_LIBRARIES[i].books.size(); ++j)
+		{
+			cout << OUT_LIBRARIES[i].books[j] << " ";
+		}
+		cout << endl;
+	}
+}
+
 int main()
 {
 	cin >> B >> L >> D;
@@ -69,6 +96,7 @@ int main()
 	}
 
 
+	WriteOutput();
 
 	return 0;
 }
