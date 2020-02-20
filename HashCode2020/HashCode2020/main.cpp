@@ -24,6 +24,12 @@ vector<Library> LIBRARIES;
 
 struct OutLibrary
 {
+	OutLibrary(int id, vector<unsigned long long>& books)
+	{
+		this->id = id;
+		this->books = books;
+	}
+
 	int id = 0;
 	vector<unsigned long long> books;
 };
@@ -119,7 +125,7 @@ int main()
         // Choose library with the highest score.
         int chosen_one = *std::max_element(remaining_libraries.begin(), remaining_libraries.end(), [&](int lhs, int rhs) { return LIBRARIES[lhs].score < LIBRARIES[rhs].score; });
 
-        OUT_LIBRARIES.emplace_back(OutLibrary{ chosen_one, LIBRARIES[chosen_one].books });
+        OUT_LIBRARIES.emplace_back(OutLibrary(chosen_one, LIBRARIES[chosen_one].books));
 
         auto& l = LIBRARIES[chosen_one];
         l.is_commited = true;
