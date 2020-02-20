@@ -136,5 +136,7 @@ int main()
 
 	WriteOutput();
 
+    cerr << total_score << endl;
+
 	return 0;
 }

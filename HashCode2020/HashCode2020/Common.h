@@ -30,7 +30,7 @@ struct Library
     vector<unsigned long long> books;
 
     bool is_commited = false;
-    int score = 0;
+    double score = 0;
 };
 
 extern vector<Library> LIBRARIES;
