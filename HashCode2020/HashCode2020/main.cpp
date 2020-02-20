@@ -16,7 +16,7 @@
 using namespace std;
 
 #include "Common.h"
-#include "ScoreA.h"
+#include "ScoreB.h"
 
 unsigned long long B, L, D;
 vector<unsigned long long> BOOKS;
