@@ -15,21 +15,12 @@
 
 using namespace std;
 
+#include "Common.h"
+#include "ScoreA.h"
 
 unsigned long long B, L, D;
-
 vector<unsigned long long> BOOKS;
-
-struct Library
-{
-	unsigned long long N; //number of books in library
-	unsigned long long T; // singup process time
-	unsigned long long M; // books per day
-	vector<unsigned long long> books;
-};
-
 vector<Library> LIBRARIES;
-
 
 struct OutLibrary
 {
@@ -44,7 +35,7 @@ void WriteOutput()
 {
 	cout << OUT_LIBRARIES.size() << endl;
 
-	for (unsigned long long i = 0; i < B; ++i)
+	for (unsigned long long i = 0; i < OUT_LIBRARIES.size(); ++i)
 	{
 		cout << OUT_LIBRARIES[i].id << " ";
 		cout << OUT_LIBRARIES[i].books.size() << endl;
@@ -95,6 +86,51 @@ int main()
 		LIBRARIES.push_back(std::move(library));
 	}
 
+
+    vector<int> remaining_libraries;
+    int days_left = D;
+    unsigned long long total_score = 0;
+
+    for (int commited_libraries = 0; commited_libraries < LIBRARIES.size(); ++commited_libraries)
+    {
+        // Sort books in each library.
+        for (int lib = 0; lib < LIBRARIES.size(); ++lib)
+        {
+            if (!LIBRARIES[lib].is_commited)
+            {
+                auto& books = LIBRARIES[lib].books;
+                std::sort(books.begin(), books.end(), [&](auto lhs, auto rhs) { return BOOKS[lhs] > BOOKS[rhs]; });
+            }
+        }
+
+        // Calculate score for each library.
+        remaining_libraries.clear();
+        remaining_libraries.reserve(LIBRARIES.size() - commited_libraries);
+
+        for (int lib = 0; lib < LIBRARIES.size(); ++lib)
+        {
+            if (!LIBRARIES[lib].is_commited)
+            {
+                LIBRARIES[lib].score = CalculateLibraryScore(lib, days_left);
+                remaining_libraries.emplace_back(lib);
+            }
+        }
+
+        // Choose library with the highest score.
+        int chosen_one = *std::max_element(remaining_libraries.begin(), remaining_libraries.end(), [&](int lhs, int rhs) { return LIBRARIES[lhs].score < LIBRARIES[rhs].score; });
+
+        OUT_LIBRARIES.emplace_back(OutLibrary{ chosen_one, LIBRARIES[chosen_one].books });
+
+        auto& l = LIBRARIES[chosen_one];
+        l.is_commited = true;
+        int book_idx = 0;
+        for (int d = 0; d < (days_left - l.T) * l.M && book_idx < l.books.size(); ++d)
+        {
+            total_score += BOOKS[l.books[book_idx]];
+            BOOKS[l.books[book_idx]] = 0;
+            book_idx++;
+        }
+    }
 
 	WriteOutput();
 
