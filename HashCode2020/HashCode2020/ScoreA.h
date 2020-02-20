@@ -2,7 +2,17 @@
 
 #include "Common.h"
 
-int CalculateLibraryScore(int library_idx, int days)
+double CalculateLibraryScore(int library_idx, int days)
 {
-    return LIBRARIES[library_idx].books.size();
+    float score = 0;
+    auto& l = LIBRARIES[library_idx];
+
+    int book_idx = 0;
+    for (int d = 0; d < (days - l.T) * l.M && book_idx < l.books.size(); ++d)
+    {
+        score += BOOKS[l.books[book_idx]];
+        book_idx++;
+    }
+
+    return score;
 }

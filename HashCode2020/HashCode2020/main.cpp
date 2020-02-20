@@ -91,7 +91,7 @@ int main()
     int days_left = D;
     unsigned long long total_score = 0;
 
-    for (int commited_libraries = 0; commited_libraries < LIBRARIES.size(); ++commited_libraries)
+    for (int commited_libraries = 0; commited_libraries < LIBRARIES.size() && days_left > 0; ++commited_libraries)
     {
         // Sort books in each library.
         for (int lib = 0; lib < LIBRARIES.size(); ++lib)
@@ -130,9 +130,13 @@ int main()
             BOOKS[l.books[book_idx]] = 0;
             book_idx++;
         }
+
+        days_left -= l.T;
     }
 
 	WriteOutput();
+
+    cerr << total_score << endl;
 
 	return 0;
 }
