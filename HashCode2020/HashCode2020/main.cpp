@@ -132,11 +132,19 @@ int main()
         }
 
         days_left -= l.T;
+
+
+        int prev_percent_completed = commited_libraries * 100 / LIBRARIES.size();
+        int percent_completed = (commited_libraries + 1) * 100 / LIBRARIES.size();
+        if (prev_percent_completed != percent_completed)
+        {
+            cerr << percent_completed << "%" << endl;
+        }
     }
 
 	WriteOutput();
 
-    cerr << total_score << endl;
+    cerr << "Total score: " << total_score << endl;
 
 	return 0;
 }
