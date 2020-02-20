@@ -21,6 +21,7 @@ using namespace std;
 extern unsigned long long B, L, D;
 
 extern vector<unsigned long long> BOOKS;
+extern vector<int> BOOKS_COUNT;
 
 struct Library
 {

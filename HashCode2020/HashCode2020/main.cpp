@@ -16,11 +16,12 @@
 using namespace std;
 
 #include "Common.h"
-#include "ScoreA.h"
+#include "ScoreC.h"
 
 unsigned long long B, L, D;
 vector<unsigned long long> BOOKS;
 vector<Library> LIBRARIES;
+vector<int> BOOKS_COUNT;
 
 struct OutLibrary
 {
@@ -68,6 +69,8 @@ int main()
 		BOOKS.push_back(book);
 	}
 
+    BOOKS_COUNT.resize(BOOKS.size(), 0);
+
 
 	//LIBRARIES
 	LIBRARIES.reserve(L);
@@ -86,12 +89,13 @@ int main()
 			unsigned long long book;
 			cin >> book;
 			library.books.push_back(book);
+
+            BOOKS_COUNT[book]++;
 		}
 
 
 		LIBRARIES.push_back(std::move(library));
 	}
-
 
     vector<int> remaining_libraries;
     int days_left = D;
