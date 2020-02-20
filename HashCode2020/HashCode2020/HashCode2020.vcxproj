@@ -158,6 +158,15 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="ScoreA.h" />
+    <ClInclude Include="ScoreB.h" />
+    <ClInclude Include="ScoreC.h" />
+    <ClInclude Include="ScoreD.h" />
+    <ClInclude Include="ScoreE.h" />
+    <ClInclude Include="ScoreF.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

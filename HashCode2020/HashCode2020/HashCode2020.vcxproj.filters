@@ -3,4 +3,13 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ScoreA.h" />
+    <ClInclude Include="ScoreB.h" />
+    <ClInclude Include="ScoreC.h" />
+    <ClInclude Include="ScoreD.h" />
+    <ClInclude Include="ScoreE.h" />
+    <ClInclude Include="ScoreF.h" />
+    <ClInclude Include="Common.h" />
+  </ItemGroup>
 </Project>
