@@ -89,7 +89,6 @@ void WriteOutput()
         std::cout << isection.schedule.schedule.size() << '\n';
         for (int j = 0; j < isection.schedule.schedule.size(); ++j)
         {
-            std::cout << j << '\n';
             const std::pair<int, int>& pair = isection.schedule.schedule[j];
 
             std::cout << in.streets[pair.first].name << ' ' << pair.second << '\n';
