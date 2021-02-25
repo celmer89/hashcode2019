@@ -47,16 +47,21 @@ void ReadInput(Input& in)
             std::string street_name;
             std::cin >> street_name;
 
-            auto it = std::find_if(begin(in.streets), end(in.streets), [&street_name](const Street& s)
+            auto street_it = std::find_if(begin(in.streets), end(in.streets), [&street_name](const Street& s)
             {
                 return s.name == street_name;
             });
 
-            ++(it->num_cars_global);
+            ++(street_it->num_cars_global);
+            if (j == 0)
+            {
+                ++(street_it->num_cars_starting);
+            }
+            street_it->sum_of_path_indexes += j;
 
-            assert(it != in.streets.cend());
+            assert(street_it != in.streets.cend());
 
-            int idx = it - in.streets.cbegin();
+            int idx = street_it - in.streets.cbegin();
 
             c.streets_ids.emplace_back(idx);
         }

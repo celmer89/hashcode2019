@@ -26,6 +26,8 @@ struct Street
     int end_id = 0;
     int length = 0;
     int num_cars_global = 0;
+    int num_cars_starting = 0;
+    int sum_of_path_indexes = 0;
 };
 
 struct Car
