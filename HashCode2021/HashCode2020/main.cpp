@@ -19,7 +19,8 @@ using namespace std;
 
 int main()
 {
-	
+	Input in;
+	ReadInput(in);
 
 	return 0;
 }
