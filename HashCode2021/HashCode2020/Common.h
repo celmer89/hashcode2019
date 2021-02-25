@@ -20,6 +20,7 @@ using namespace std;
 
 struct Street
 {
+    int id = 0;
     std::string name;
     int begin_id = 0;
     int end_id = 0;

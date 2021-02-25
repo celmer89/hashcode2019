@@ -26,6 +26,7 @@ void ReadInput(Input& in)
         in.streets.emplace_back();
         Street& s = in.streets.back();
 
+        s.id = i;
         std::cin >> s.begin_id;
         std::cin >> s.end_id;
         std::cin >> s.name;
