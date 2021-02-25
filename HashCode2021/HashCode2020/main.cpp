@@ -17,9 +17,11 @@ using namespace std;
 
 #include "Common.h"
 
+Input in;
+
 int main()
 {
-	Input in;
+
 	ReadInput(in);
 
 	return 0;
