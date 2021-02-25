@@ -25,9 +25,6 @@ void ReadInput(Input& in)
         std::cin >> s.end_id;
         std::cin >> s.name;
         std::cin >> s.length;
-
-        int length = 0;
-        std::cin >> length;
     }
 
     for (int i = 0; i < car_count; ++i)
@@ -38,8 +35,6 @@ void ReadInput(Input& in)
         int path_street_count = 0;
         std::cin >> path_street_count;
         c.streets_ids.reserve(path_street_count);
-
-        std::string street_name;
 
         for (int j = 0; j < path_street_count; ++j)
         {
