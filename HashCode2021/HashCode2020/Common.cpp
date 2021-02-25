@@ -1,5 +1,10 @@
 ﻿#include "Common.h"
+#include "Intersection.h"
+
 #include <iostream>
+
+extern Input in;
+extern vector<Intersection> Intersections;
 
 void ReadInput(Input& in)
 {
@@ -55,6 +60,39 @@ void ReadInput(Input& in)
     }
 }
 
-void WriteOutput(Output& out)
+void WriteOutput()
 {
+    static bool TEST_DATA = false;
+    if (TEST_DATA)
+    {
+        Intersections.clear();
+        {
+            Intersections.emplace_back();
+            Intersection& i = Intersections.back();
+            i.schedule.schedule.emplace_back(0, 1);
+            i.schedule.schedule.emplace_back(1, 2);
+        }
+        {
+            Intersections.emplace_back();
+            Intersection& i = Intersections.back();
+            i.schedule.schedule.emplace_back(0, 1);
+            i.schedule.schedule.emplace_back(1, 2);
+        }
+    }
+
+    std::cout << Intersections.size() << '\n';
+    for (int i = 0; i < Intersections.size(); ++i)
+    {
+        std::cout << i << '\n';
+        const Intersection& isection = Intersections[i];
+
+        std::cout << isection.schedule.schedule.size() << '\n';
+        for (int j = 0; j < isection.schedule.schedule.size(); ++j)
+        {
+            std::cout << j << '\n';
+            const std::pair<int, int>& pair = isection.schedule.schedule[j];
+
+            std::cout << in.streets[pair.first].name << ' ' << pair.second << '\n';
+        }
+    }
 }

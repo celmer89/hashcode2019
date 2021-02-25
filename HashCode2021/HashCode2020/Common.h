@@ -46,8 +46,4 @@ struct Input
 
 void ReadInput(Input& in);
 
-struct Output
-{
-};
-
-void WriteOutput(const Output& out);
+void WriteOutput();

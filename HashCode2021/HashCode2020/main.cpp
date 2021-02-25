@@ -31,6 +31,8 @@ int main()
 	PrepareData();
 
 
+	WriteOutput();
+
 	return 0;
 }
 
