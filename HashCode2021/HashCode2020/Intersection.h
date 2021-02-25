@@ -32,5 +32,5 @@ struct Intersection
     unordered_map<int, Street> out_streets;
     Schedule schedule;
 
-
+    void Schedule();
 };

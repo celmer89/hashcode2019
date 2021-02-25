@@ -23,13 +23,14 @@ Input in;
 vector<Intersection> Intersections;
 
 void PrepareData();
+void DoSchedule();
 
 int main()
 {
 
 	ReadInput(in);
 	PrepareData();
-
+	DoSchedule();
 
 	WriteOutput();
 
@@ -56,9 +57,12 @@ void PrepareData()
 		out_streets[i] = street;
 
 	}
+}
 
-
-
-
-
+void DoSchedule()
+{
+	for (int i = 0; i < Intersections.size(); ++i)
+	{
+		Intersections[i].Schedule();
+	}
 }
