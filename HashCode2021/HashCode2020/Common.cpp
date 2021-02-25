@@ -91,8 +91,8 @@ void WriteOutput()
     std::cout << Intersections.size() << '\n';
     for (int i = 0; i < Intersections.size(); ++i)
     {
-        std::cout << i << '\n';
         const Intersection& isection = Intersections[i];
+        std::cout << isection.id << '\n';
 
         std::cout << isection.schedule.schedule.size() << '\n';
         for (int j = 0; j < isection.schedule.schedule.size(); ++j)
