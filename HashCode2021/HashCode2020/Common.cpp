@@ -83,6 +83,11 @@ void WriteOutput()
         }
     }
 
+    Intersections.erase(std::remove_if(begin(Intersections), end(Intersections), [](const Intersection& isect)
+    {
+        return isect.schedule.schedule.empty();
+    }), Intersections.end());
+
     std::cout << Intersections.size() << '\n';
     for (int i = 0; i < Intersections.size(); ++i)
     {
