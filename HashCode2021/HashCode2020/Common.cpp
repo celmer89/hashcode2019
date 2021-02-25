@@ -46,10 +46,12 @@ void ReadInput(Input& in)
             std::string street_name;
             std::cin >> street_name;
 
-            auto it = std::find_if(cbegin(in.streets), cend(in.streets), [&street_name](const Street& s)
+            auto it = std::find_if(begin(in.streets), end(in.streets), [&street_name](const Street& s)
             {
                 return s.name == street_name;
             });
+
+            ++(it->num_cars_global);
 
             assert(it != in.streets.cend());
 
