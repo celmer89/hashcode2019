@@ -72,6 +72,9 @@ int main()
 		cin >> library.N >> library.T >> library.M;
 
 
+
+
+
 		library.books.reserve(library.N);
 
 
