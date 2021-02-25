@@ -19,3 +19,5 @@ HashCode2019/HashCode2019/x64/Release/
 *.opendb
 HashCode2021/.vs
 HashCode2021/HashCode2020/x64/Debug/HashCode2020.exe.recipe
+HashCode2021/x64/
+HashCode2021/HashCode2020/x64
