@@ -14,6 +14,11 @@ void Intersection::Schedule()
 		}
 	}
 
+	if (streets.empty())
+	{
+		return;
+	}
+
 	sort(streets.begin(), streets.end(), [](const auto& a, const auto& b)
 	{
 		return a->num_cars_global > b->num_cars_global;
