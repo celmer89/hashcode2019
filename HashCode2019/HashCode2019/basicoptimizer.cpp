@@ -5,6 +5,8 @@
 
 using namespace std;
 
+// asd
+
 BasicOptimizer::BasicOptimizer(DataReader* reader, SOptimizerParams& optimizer_params)
 {
     m_DataReaderPtr = reader;
