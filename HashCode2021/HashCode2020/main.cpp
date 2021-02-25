@@ -39,6 +39,23 @@ int main()
 
 void PrepareData()
 {
+	Intersections.resize(in.isection_count);
+
+	for (int i = 0; i < Intersections.size(); ++i)
+	{
+		Intersections[i].id = i;
+	}
+
+	for (int i = 0; i < in.streets.size(); ++i)
+	{
+		auto& street = in.streets[i];
+		auto& out_streets = Intersections[street.begin_id].out_streets;
+		auto& in_streets = Intersections[street.end_id].in_streets;
+		
+		in_streets[i] = street;
+		out_streets[i] = street;
+
+	}
 
 
 
